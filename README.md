@@ -32,6 +32,7 @@ sudo apt install python3 python3-pip
 >Instale o Ansible usando o pip ou gerenciadores de pacotes do sistema.
 
 Instalação via pip:
+
 ***Sintaxe:**
 ```bash
 pip install ansible
