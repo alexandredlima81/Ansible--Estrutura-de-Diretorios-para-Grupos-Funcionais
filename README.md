@@ -1,4 +1,5 @@
 # Ansible -- Estrutura de Diretorios para Grupos Funcionais
+<p align="justify">
 Organizar grupo de servidores e suas respectivas funcionalidades.
 
 Para usar a arquitetura sugerida e o Ansible de forma eficiente, é importante atender a alguns requisitos técnicos e configurar corretamente o ambiente. Abaixo está um resumo dos requisitos necessários com base na documentação oficial do Ansible e boas práticas.
@@ -50,3 +51,5 @@ Links:
 
 https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/attaching-files
+
+</p>
