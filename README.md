@@ -28,8 +28,8 @@ Comando para instalar Python no Ubuntu, por exemplo:
 sudo apt update
 sudo apt install python3 python3-pip
 ```
->Ansible:
->Instale o Ansible usando o pip ou gerenciadores de pacotes do sistema.
+> Ansible:\
+> Instale o Ansible usando o pip ou gerenciadores de pacotes do sistema.\
 
 Instalação via pip:
 ***Sintaxe:**
