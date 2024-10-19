@@ -1,0 +1,15 @@
+---
+- name: Copiar arquivos para servidores Windows
+  hosts: all
+  vars_files:
+    - ../vault/passwords.yml  # Verifique se o caminho está correto
+  tasks:
+    - name: Criar o diretório C:\zabbix se não existir
+      win_file:
+        path: C:\zabbix
+        state: directory
+
+    - name: Copiar arquivo para C:\zabbix
+      win_copy:
+        src: ../files/installer.msi
+        dest: C:\zabbix\
