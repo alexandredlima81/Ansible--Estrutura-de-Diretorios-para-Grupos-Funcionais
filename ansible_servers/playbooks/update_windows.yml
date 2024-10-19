@@ -1,0 +1,51 @@
+---
+- name: Executar Windows Update em servidores Windows
+  hosts: all
+  vars_files:
+    - ../vault/passwords.yml  # Verifique se o caminho está correto
+  tasks:
+    - name: Procurar por atualizações disponíveis
+      win_updates:
+        category_names:
+          - SecurityUpdates
+          - CriticalUpdates
+          - Updates           # Inclui outras atualizações gerais
+          - DefinitionUpdates  # Inclui atualizações de definição, como as do Windows Defender
+          - SoftwareUpdates    # Inclui atualizações de software
+        state: searched
+      register: update_result
+
+    - name: Verificar se atualizações foram encontradas
+      debug:
+        msg: "Número de atualizações encontradas: {{ update_result.updates | length }}"
+
+    - name: Instalar todas as atualizações encontradas
+      win_updates:
+        category_names:
+          - SecurityUpdates
+          - CriticalUpdates
+          - Updates
+          - DefinitionUpdates
+          - SoftwareUpdates
+        state: installed
+      when: update_result.updates | length > 0
+      register: install_result
+
+    - name: Verificar se atualizações foram instaladas
+      debug:
+        msg: "Número de atualizações instaladas: {{ install_result.updates_installed | default(0) }}"
+      when: install_result is defined and install_result.updates_installed is defined
+
+    - name: Verificar se reinicialização é necessária após a instalação
+      debug:
+        msg: "Reboot necessário: {{ install_result.reboot_required | default(false) }}"
+      when: install_result is defined
+
+    - name: Reiniciar se necessário após a instalação de atualizações
+      win_reboot:
+      when: install_result.reboot_required | default(false)
+
+    - name: Confirmar status de reinicialização
+      debug:
+        msg: "Servidor reiniciado: {{ install_result.reboot_required | default(false) }}"
+      when: install_result.reboot_required | default(false)
