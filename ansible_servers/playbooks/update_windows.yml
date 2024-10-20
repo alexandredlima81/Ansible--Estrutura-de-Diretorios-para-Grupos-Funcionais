@@ -2,14 +2,14 @@
 - name: Executar Windows Update em servidores Windows
   hosts: all
   vars_files:
-    - ../vault/passwords.yml  # Verifique se o caminho está correto
+    - ../vault/passwords.yml
   tasks:
     - name: Procurar por atualizações disponíveis
       win_updates:
         category_names:
-          - SecurityUpdates
-          - CriticalUpdates
-          - Updates           # Inclui outras atualizações gerais
+          - SecurityUpdates    # Inclui outras atualizações de Segurança
+          - CriticalUpdates    # Inclui outras atualizações Criticas
+          - Updates            # Inclui outras atualizações gerais
           - DefinitionUpdates  # Inclui atualizações de definição, como as do Windows Defender
           - SoftwareUpdates    # Inclui atualizações de software
         state: searched

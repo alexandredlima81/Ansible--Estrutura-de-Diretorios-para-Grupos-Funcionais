@@ -2,8 +2,7 @@
 - name: Copiar arquivos para servidores Windows
   hosts: all
   vars_files:
-    #- vault/passwords.yml
-    - ../vault/passwords.yml  # Verifique se o caminho está correto
+    - ../vault/passwords.yml  # Certifique-se de que o caminho está correto
   tasks:
     - name: Criar o diretório C:\zabbix se não existir
       win_file:

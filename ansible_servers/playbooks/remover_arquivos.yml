@@ -1,0 +1,10 @@
+---
+- name: Remover arquivos de um diretório em servidores Windows
+  hosts: all
+  vars_files:
+    - ../vault/passwords.yml  # Certifique-se de que o caminho está correto
+  tasks:
+    - name: Remover arquivos do diretório C:\zabbix
+      win_file:
+        path: C:\zabbix\*
+        state: absent
